@@ -1,7 +1,7 @@
 public class HiringTable{
-    int MAX_SKILLS = 3;
-    int MAX_COMPANIES = 3;
-    int MAX_APPLICANTS = 50;
+    final static int MAX_SKILLS = 3;
+    final static int MAX_COMPANIES = 3;
+    final static int MAX_APPLICANTS = 50;
     Applicant[] data = new Applicant[MAX_APPLICANTS];
 
     HiringTable(){
@@ -42,46 +42,54 @@ public class HiringTable{
     }
 
     public void addApplicant(Applicant newApplicant) throws FullTableException{
-        for(int i = 0; i < 50; i++) {
-        	if(data[i] == null) {
-        		data[i] = newApplicant;
-        		break;
-        	}
+        int i = 0;
+        if(data[49] != null) {
+        	throw new FullTableException();
         }
-        System.out.println(data[0].toString());
+        else {
+	        while(i < 50) {
+	        	if(data[i] == null) {
+	        		data[i] = newApplicant;
+	        		break;
+	        	}
+	        	else{
+	        		i++;
+	        	}
+	        }
+        }
+        
     }
 
-    public void removeApplicant(String name){
-        int counter = 0;
-        
-        for(int i = 0; i < 50; i++){
-            if(data[i] == null){
-                //applicant not found error
-            }
-            else if(data[i].getApplicantName() == name){
-                counter = i;
-            }
+    public void removeApplicant(String name) throws ApplicantNotFoundException{
+        for(int i = 0; i < 50; i++) {
+        	if(data[i].getApplicantName() == name) {
+        		while(data[i+1] != null) {
+        			data[i] = data[i+1];
+        		}
+        		break;
+        	}
+        	else if(data[i] == null) {
+        		throw new ApplicantNotFoundException();
+        	} 
         }
-
-        while(data[counter +1] != null && counter < 50){
-            data[counter] = data[counter+1];
-            counter++;
-        }
-
-        data[counter+1] = null;
     }
 
     public Applicant getApplicant(String name) throws ApplicantNotFoundException{
-        int count = 0;
         
-        while(data[count].getApplicantName() != name) {
-        	count++;
-        	if(count > 49) {
+        Applicant newApp = new Applicant();
+        
+        for(int i = 0; i < 50; i++) {
+        	if(data[i].getApplicantName() == "Bob") {
         		throw new ApplicantNotFoundException();
         	}
+        	else if(data[i].getApplicantName() == name) {
+        		newApp = data[i];
+        		break;
+        	}
         }
-        if(data[count].getApplicantName() == name ) {
-        	return data[count];
+        
+        if(newApp.getApplicantName() == name) {
+        	return newApp;
         }
         else {
         	throw new ApplicantNotFoundException();

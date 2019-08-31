@@ -100,17 +100,14 @@ public class HiringSystem{
 	            	app = addApp();
 	            	HTab.addApplicant(app);
 	                System.out.println("Applicant " + app.getApplicantName() + " has been successfully added to the hiring system.");
-	            break;
-	                
+	            break;  
 	            case "R":
 	                String name = askName();
 	                HTab.removeApplicant(name);
 	            break;
 	            case "G":
 	                String name1 = askName();
-	                Applicant newApp = new Applicant();
-	                newApp = HTab.getApplicant(name1);
-	                displayApp(newApp);
+	                System.out.println(HTab.getApplicant(name1).toString());
 	            break;
 	            case "P":
 	            	
@@ -127,7 +124,7 @@ public class HiringSystem{
 	            	HTab.refineSearch(HTab, comp, skil, col, GPA1);
 	            break;
 	            case "S":
-	            	System.out.println("There are " + HTab.size() + " in the hiring system.");
+	            	System.out.println("There are " + HTab.size() + " applicants in the hiring system.");
 	            break;
 	            case "B":
 	            break;

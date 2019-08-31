@@ -6,7 +6,7 @@ public class Applicant{
     String[] applicantSkills;
 
     public Applicant(){
-
+    	applicantName = "Bob";
     }
 
     public Applicant(String[] companyName, String applicantName, double applicantGPA,
@@ -130,7 +130,7 @@ public class Applicant{
         	}
         }
         
-        String applicantSummary = compNames + applicantName + applicantGPA + applicantCollege + skills;
+        String applicantSummary = compNames + "   " + applicantName + "   " + applicantGPA + "   " + applicantCollege + "   " + skills;
         
         return applicantSummary;
     }

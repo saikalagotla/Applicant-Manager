@@ -1,6 +1,6 @@
 
 public class FullTableException extends Exception {
-	public static final long serialVersionUID = 42L;
+	//public static final long serialVersionUID = 42L;
 	
 	public FullTableException() {
 		super("No more applicants can be added");
