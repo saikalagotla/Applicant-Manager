@@ -1,8 +1,20 @@
+/*
+ * Sai Kalagotla
+ * 113033883
+ * Professor Esmaili
+ * 9/2/2019
+ * 
+ * Homework #1
+ * CSE 214
+ * Fall 2019
+ */
+
 import java.util.Scanner;
 
 public class HiringSystem{
 	
 	static HiringTable HTab = new HiringTable();
+	static HiringTable newHT = new HiringTable();
 	static Scanner keyboard = new Scanner(System.in);
 	
 	public static String askName() {
@@ -18,21 +30,23 @@ public class HiringSystem{
 	}
 	
 	public static String[] askCompanies() {
-		String[] companies = new String[3];
-		for(int i = 0; i < 3; i++){
-            System.out.print("Enter up to " + (3-i) + " Companies: ");
+		HiringTable HT = new HiringTable();
+		String[] companies = new String[HT.getMaxCompanies()];
+		for(int i = 0; i < HT.getMaxCompanies(); i++){
+            System.out.print("Enter up to " + (HT.getMaxCompanies()-i) + " Companies: ");
             companies[i] = keyboard.nextLine();
             if(companies[i] == null){
-                break;
+                return companies;
             }
         }
 		return companies;
 	}
 	
 	public static String[] askSkills() {
-		String[] skills = new String[3];
-		for(int i = 0; i < 3; i++){
-            System.out.print("Enter up to " + (3-i) + " Skills: ");
+		HiringTable HT = new HiringTable();
+		String[] skills = new String[HT.getMaxSkills()];
+		for(int i = 0; i < HT.getMaxSkills(); i++){
+            System.out.print("Enter up to " + (HT.getMaxSkills()-i) + " Skills: ");
             skills[i] = keyboard.nextLine();
             if(skills[i] == null){
                 break;
@@ -61,45 +75,68 @@ public class HiringSystem{
 	}
 	
 	public static void displayApp(Applicant app) {
-		String[] compNames = app.getCompanyName();
-        String[] appSkills = app.getApplicantSkills();
         
         String companyNames = "";
         String skills = "";
 
-        int count = 0;
         
-        while(compNames[count] != null) {
-        	companyNames += compNames[count] + ", ";
-        	count++;
+        for(int i = 0; i < app.getCompanyName().length; i++) {
+        	if(app.getCompanyName()[i] != null) {
+        		companyNames += app.getCompanyName()[i];
+        		if(i < app.getCompanyName().length-1) {
+        			companyNames += ", ";
+        		}
+        	}
+        	else {
+        		break;
+        	}
         }
-        count = 0;
         
-        while(appSkills[count] != null) {
-        	skills += appSkills[count] + ", ";
-        	count++;
+        for(int x = 0; x < app.getApplicantSkills().length; x++) {
+        	if(app.getApplicantSkills()[x] != null) {
+        		skills += app.getApplicantSkills()[x];
+        		if(x < app.getApplicantSkills().length-1) {
+        			skills += ", ";
+        		}
+        	}
+        	else {
+        		break;
+        	}
         }
 		
-		System.out.print("\nApplicant Name: " + app.getApplicantName() + "\nApplicant Applying From: "+ companyNames + 
+		System.out.print("Applicant Name: " + app.getApplicantName() + "\nApplicant Applying From: "+ companyNames + 
 	            "\nApplicant GPA: " + app.getApplicantGPA() + "\nApplicant College: " + app.getApplicantCollege() + 
 	            "\nApplicant Skills: " + skills + "\n");
 		
 	}
 	
+	public static void printHeading() {
+		System.out.println("Company Name                     Applicant       GPA        College          Skills");
+    	System.out.println("--------------------------------------------------------------------------------------------------");
+	}
+	
     public static void main(String[] args) throws FullTableException, ApplicantNotFoundException{
         
-    	
-        System.out.print("Please enter a command: ");
+    	System.out.print("(A)   Add Applicant\r\n" + 
+    			"(R)   Remove Applicant\r\n" + 
+    			"(G)   Get Applicant\r\n" + 
+    			"(P)   Print List\r\n" + 
+    			"(RS)  Refine Search\r\n" +
+    			"(S)   Size\r\n" +
+    			"(B)   Backup\r\n" + 
+    			"(CB)  Compare Backup\r\n" + 
+    			"(RB)  Revert Backup\r\n" + 
+    			"(Q)   Quit");
+        System.out.print("\n\nPlease enter a command: ");
         String option = keyboard.nextLine();
         
         
-        do {
+        while(!(option.equals("Q"))){
         	switch(option){
 	            case "A":
 	            	Applicant app = new Applicant();
 	            	app = addApp();
 	            	HTab.addApplicant(app);
-	                System.out.println("Applicant " + app.getApplicantName() + " has been successfully added to the hiring system.");
 	            break;  
 	            case "R":
 	                String name = askName();
@@ -107,10 +144,10 @@ public class HiringSystem{
 	            break;
 	            case "G":
 	                String name1 = askName();
-	                System.out.println(HTab.getApplicant(name1).toString());
+	                displayApp(HTab.getApplicant(name1));
 	            break;
 	            case "P":
-	            	
+	            	HTab.printApplicantTable();
 	            break;
 	            case "RS":
 	            	System.out.print("Enter a company to filter for: ");
@@ -120,25 +157,39 @@ public class HiringSystem{
 	            	System.out.print("Enter a college to filter for: ");
 	            	String col = keyboard.nextLine();
 	            	System.out.print("Enter the minimum GPA to filter for: ");
-	            	double GPA1 = keyboard.nextDouble();
-	            	HTab.refineSearch(HTab, comp, skil, col, GPA1);
+	            	double GPA = keyboard.nextDouble();
+	            	printHeading();
+	            	HTab.refineSearch(HTab, comp, skil, col, GPA);
 	            break;
 	            case "S":
 	            	System.out.println("There are " + HTab.size() + " applicants in the hiring system.");
 	            break;
 	            case "B":
+	            	newHT = HTab.clone();
+	            	System.out.println("Successfully created backup.");
 	            break;
 	            case "CB":
+	            	boolean eq = HTab.checkBackUp(newHT);
+	            	if(eq == true) {
+	            		System.out.println("Current list is the same as the backup copy.");
+	            	}
+	            	else {
+	            		System.out.println("Current list is not the same as the backup copy.");
+	            	}
 	            break;
 	            case "RB":
+	            	HTab = newHT.clone();
+	            	System.out.println("Successfully reverted to the backup copy.");
 	            break;
 	            default:
-	            	//throw an error
+	            	System.out.println("Invalid command!");
 	            break; 
 	        }
+        	
         	System.out.print("Please enter a command: ");
             option = keyboard.nextLine();
-        }while(option != "Q");
-
+            
+        }
+        System.out.println("Quitting program...");
     }
 }

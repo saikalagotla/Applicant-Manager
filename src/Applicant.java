@@ -1,12 +1,26 @@
+/*
+ * Sai Kalagotla
+ * Professor Esmaili
+ * 9/2/2019
+ * 
+ * Homework #1
+ * CSE 214
+ * Fall 2019
+ * 
+ * An abstract data type that represents an applicant and there
+ * properties. Contains methods to manipulate the data stored in
+ * each member variable.
+ */
+
 public class Applicant{
-    String[] companyName;
-    String applicantName;
-    double applicantGPA;
-    String applicantCollege;
-    String[] applicantSkills;
+    private String[] companyName;
+    private String applicantName;
+    private double applicantGPA;
+    private String applicantCollege;
+    private String[] applicantSkills;
 
     public Applicant(){
-    	applicantName = "Bob";
+    	
     }
 
     public Applicant(String[] companyName, String applicantName, double applicantGPA,
@@ -112,25 +126,36 @@ public class Applicant{
     	String compNames = "";
         String skills = "";
 
-        for(int i = 0; i < 3; i++) {
+        for(int i = 0; i < companyName.length; i++) {
         	if(companyName[i] != null) {
-        		compNames += companyName[i] + ", ";
+        		compNames += companyName[i];
+        		if(i < companyName.length-1) {
+	        		if(!(companyName[i+1].equals(null))) {
+	        			compNames += ", ";
+	        		}
+        		}
         	}
         	else {
         		break;
         	}
         }
         
-        for(int x = 0; x < 3; x++) {
+        for(int x = 0; x < applicantSkills.length; x++) {
         	if(applicantSkills[x] != null) {
-        		skills += applicantSkills[x] + ", ";
+        		skills += applicantSkills[x];
+        		if(x < applicantSkills.length-1) {
+	        		if(!(applicantSkills[x+1].equals(null))) {
+	        			skills += ", ";
+	        		}
+        		}
         	}
         	else {
         		break;
         	}
         }
         
-        String applicantSummary = compNames + "   " + applicantName + "   " + applicantGPA + "   " + applicantCollege + "   " + skills;
+        String applicantSummary = String.format("%-33s%-16s%-11.2f%-17s%-3s", compNames, applicantName,
+        		applicantGPA, applicantCollege, skills);
         
         return applicantSummary;
     }
