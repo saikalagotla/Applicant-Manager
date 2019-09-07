@@ -126,32 +126,29 @@ public class Applicant{
     	String compNames = "";
         String skills = "";
 
-        for(int i = 0; i < companyName.length; i++) {
-        	if(companyName[i] != null) {
-        		compNames += companyName[i];
-        		if(i < companyName.length-1) {
-	        		if(!(companyName[i+1].equals(null))) {
-	        			compNames += ", ";
-	        		}
-        		}
-        	}
-        	else {
-        		break;
-        	}
+        int i = 0;
+
+        while(i < 3 && !companyName[i].isEmpty()){
+            compNames += companyName[i];
+            if(i < companyName.length-1) {
+                if(!(companyName[i+1].isEmpty())) {
+                    compNames += ", ";
+                }
+            }
+            i++;
         }
-        
-        for(int x = 0; x < applicantSkills.length; x++) {
-        	if(applicantSkills[x] != null) {
-        		skills += applicantSkills[x];
-        		if(x < applicantSkills.length-1) {
-	        		if(!(applicantSkills[x+1].equals(null))) {
-	        			skills += ", ";
-	        		}
-        		}
-        	}
-        	else {
-        		break;
-        	}
+
+        i = 0;
+
+        while(i < 3 && !applicantSkills[i].isEmpty()){
+            skills += applicantSkills[i];
+            if(i < applicantSkills.length-1) {
+                if(!(applicantSkills[i+1].isEmpty())) {
+                    skills += ", ";
+                }
+            }
+            i++;
+
         }
         
         String applicantSummary = String.format("%-33s%-16s%-11.2f%-17s%-3s", compNames, applicantName,

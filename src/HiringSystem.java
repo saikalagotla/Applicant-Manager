@@ -13,7 +13,7 @@ import java.util.Scanner;
 
 public class HiringSystem{
 	
-	static HiringTable HTab = new HiringTable();
+
 	static HiringTable newHT = new HiringTable();
 	static Scanner keyboard = new Scanner(System.in);
 	
@@ -35,7 +35,7 @@ public class HiringSystem{
 		for(int i = 0; i < HT.getMaxCompanies(); i++){
             System.out.print("Enter up to " + (HT.getMaxCompanies()-i) + " Companies: ");
             companies[i] = keyboard.nextLine();
-            if(companies[i] == null){
+            if(companies[i].equals("")){
                 return companies;
             }
         }
@@ -48,8 +48,8 @@ public class HiringSystem{
 		for(int i = 0; i < HT.getMaxSkills(); i++){
             System.out.print("Enter up to " + (HT.getMaxSkills()-i) + " Skills: ");
             skills[i] = keyboard.nextLine();
-            if(skills[i] == null){
-                break;
+            if(skills[i].equals("")){
+                return skills;
             }
         }
 		return skills;
@@ -79,30 +79,30 @@ public class HiringSystem{
         String companyNames = "";
         String skills = "";
 
-        
-        for(int i = 0; i < app.getCompanyName().length; i++) {
-        	if(app.getCompanyName()[i] != null) {
-        		companyNames += app.getCompanyName()[i];
-        		if(i < app.getCompanyName().length-1) {
-        			companyNames += ", ";
-        		}
-        	}
-        	else {
-        		break;
-        	}
-        }
-        
-        for(int x = 0; x < app.getApplicantSkills().length; x++) {
-        	if(app.getApplicantSkills()[x] != null) {
-        		skills += app.getApplicantSkills()[x];
-        		if(x < app.getApplicantSkills().length-1) {
-        			skills += ", ";
-        		}
-        	}
-        	else {
-        		break;
-        	}
-        }
+		int i = 0;
+
+		while(i < 3 && !app.getCompanyName()[i].isEmpty()){
+			companyNames += app.getCompanyName()[i];
+			if(i < app.getCompanyName().length-1) {
+				if(!(app.getCompanyName()[i+1].isEmpty())) {
+					companyNames += ", ";
+				}
+			}
+			i++;
+		}
+
+		i = 0;
+
+		while(i < 3 && !app.getApplicantSkills()[i].isEmpty()){
+			skills += app.getApplicantSkills()[i];
+			if(i < app.getApplicantSkills().length-1) {
+				if(!(app.getApplicantSkills()[i+1].isEmpty())) {
+					skills += ", ";
+				}
+			}
+			i++;
+
+		}
 		
 		System.out.print("Applicant Name: " + app.getApplicantName() + "\nApplicant Applying From: "+ companyNames + 
 	            "\nApplicant GPA: " + app.getApplicantGPA() + "\nApplicant College: " + app.getApplicantCollege() + 
@@ -116,7 +116,8 @@ public class HiringSystem{
 	}
 	
     public static void main(String[] args) throws FullTableException, ApplicantNotFoundException{
-        
+		HiringTable HTab = new HiringTable();
+
     	System.out.print("(A)   Add Applicant\r\n" + 
     			"(R)   Remove Applicant\r\n" + 
     			"(G)   Get Applicant\r\n" + 
@@ -131,25 +132,25 @@ public class HiringSystem{
         String option = keyboard.nextLine();
         
         
-        while(!(option.equals("Q"))){
-        	switch(option){
-	            case "A":
+        while(!(option.equals("Q") || (option.equals("q")))){
+        	switch(option.toLowerCase()){
+	            case "a":
 	            	Applicant app = new Applicant();
 	            	app = addApp();
 	            	HTab.addApplicant(app);
 	            break;  
-	            case "R":
+	            case "r":
 	                String name = askName();
 	                HTab.removeApplicant(name);
 	            break;
-	            case "G":
+	            case "g":
 	                String name1 = askName();
 	                displayApp(HTab.getApplicant(name1));
 	            break;
-	            case "P":
+	            case "p":
 	            	HTab.printApplicantTable();
 	            break;
-	            case "RS":
+	            case "rs":
 	            	System.out.print("Enter a company to filter for: ");
 	            	String comp = keyboard.nextLine();
 	            	System.out.print("Enter a skill to filter for: ");
@@ -161,14 +162,14 @@ public class HiringSystem{
 	            	printHeading();
 	            	HTab.refineSearch(HTab, comp, skil, col, GPA);
 	            break;
-	            case "S":
+	            case "s":
 	            	System.out.println("There are " + HTab.size() + " applicants in the hiring system.");
 	            break;
-	            case "B":
+	            case "b":
 	            	newHT = HTab.clone();
 	            	System.out.println("Successfully created backup.");
 	            break;
-	            case "CB":
+	            case "cb":
 	            	boolean eq = HTab.checkBackUp(newHT);
 	            	if(eq == true) {
 	            		System.out.println("Current list is the same as the backup copy.");
@@ -177,7 +178,7 @@ public class HiringSystem{
 	            		System.out.println("Current list is not the same as the backup copy.");
 	            	}
 	            break;
-	            case "RB":
+	            case "rb":
 	            	HTab = newHT.clone();
 	            	System.out.println("Successfully reverted to the backup copy.");
 	            break;
