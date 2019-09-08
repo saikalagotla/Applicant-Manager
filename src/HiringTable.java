@@ -31,58 +31,65 @@ public class HiringTable{
 
     public static void refineSearch(HiringTable table, String company, String skill, String college, double GPA){
     	int count = 0;
+    	int i = 0;
     	boolean comp = false;
     	boolean skil = false;
     	boolean col = false;
     	boolean gpa = false;
-    	
+
     	while(table.data[count] != null) {
-    		
+
     		if(company.equals("")) {
     			comp = true;
     		}
     		else {
-	    		for(int i = 0; i < table.data[count].getCompanyName().length; i++) {
-	    			if(table.data[count].getCompanyName()[i].equals(company)) {
+	    		while(!table.data[count].getCompanyName()[i].equals(null)){
+	    			if(table.data[count].getCompanyName()[i].equals(company)){
 	    				comp = true;
 	    				break;
-	    			}
-	    		}
+					}
+	    			i++;
+				}
     		}
-    		
+    		i = 0;
+
     		if(skill.equals("")) {
     			skil = true;
     		}
     		else {
-	    		for(int x = 0; x < table.data[count].getApplicantSkills().length; x++) {
-	    			if(table.data[count].getApplicantSkills()[x].equals(skill)) {
+	    		while(!table.data[count].getApplicantSkills()[i].equals(null)) {
+	    			if(table.data[count].getApplicantSkills()[i].equals(skill)) {
 	    				skil = true;
 	    				break;
 	    			}
+	    			i++;
 	    		}
     		}
-    		
+
     		if(college.equals("")) {
     			col = true;
     		}
     		else if(table.data[count].getApplicantCollege().equals(college)) {
     			col = true;
     		}
-    		
+
     		if(table.data[count].getApplicantGPA() >= GPA) {
     			gpa = true;
     		}
     		else if(GPA == 0) {
     			col = true;
     		}
-    		
-    		
+
+
     		if(comp == true && skil == true && col == true && gpa == true) {
     			System.out.println(table.data[count].toString());
     		}
+    		else{
+    			System.out.println("No applicants were found with those specifications.");
+			}
     		count++;
     	}
-    	
+
     }
 
     public int size(){
