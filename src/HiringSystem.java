@@ -162,15 +162,15 @@ public class HiringSystem{
     public static void main(String[] args) throws FullTableException, ApplicantNotFoundException{
 		HiringTable HTab = new HiringTable();
 
-    	System.out.print("(A)   Add Applicant\r\n" + 
-    			"(R)   Remove Applicant\r\n" + 
-    			"(G)   Get Applicant\r\n" + 
-    			"(P)   Print List\r\n" + 
-    			"(RS)  Refine Search\r\n" +
-    			"(S)   Size\r\n" +
-    			"(B)   Backup\r\n" + 
-    			"(CB)  Compare Backup\r\n" + 
-    			"(RB)  Revert Backup\r\n" + 
+    	System.out.print("(A)   Add Applicant\n" +
+    			"(R)   Remove Applicant\n" +
+    			"(G)   Get Applicant\n" +
+    			"(P)   Print List\n" +
+    			"(RS)  Refine Search\n" +
+    			"(S)   Size\n" +
+    			"(B)   Backup\n" +
+    			"(CB)  Compare Backup\n" +
+    			"(RB)  Revert Backup\n" +
     			"(Q)   Quit");
         System.out.print("\n\nPlease enter a command: ");
         String option = keyboard.nextLine();
@@ -181,7 +181,15 @@ public class HiringSystem{
 	            case "a":
 	            	Applicant app = new Applicant();
 	            	app = addApp();
-	            	HTab.addApplicant(app);
+	            	if(app.getCompanyName()[0].equals("") || app.getApplicantSkills()[0].equals("")) {
+						System.out.println("You can't apply without any previous experience/skills");
+						break;
+					}
+	            	else if(app.getApplicantName().equals("")){
+	            		System.out.println("You can not apply without entering a name.");
+	            		break;
+					}
+					HTab.addApplicant(app);
 	            break;  
 	            case "r":
 	                String name = askName();

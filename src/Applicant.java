@@ -191,7 +191,7 @@ public class Applicant{
 
         int i = 0;
 
-        for(String com: companyName) {
+        while(i < companyName.length && !companyName[i].equals("")) {
             compNames += companyName[i];
             if (i < companyName.length - 1) {
                 if (!(companyName[i + 1].isEmpty())) {
@@ -203,7 +203,7 @@ public class Applicant{
 
         i = 0;
 
-        for(String skil: applicantSkills) {
+        while(i < applicantSkills.length && !applicantSkills[i].equals("")) {
             skills += applicantSkills[i];
             if (i < applicantSkills.length - 1) {
                 if (!(applicantSkills[i + 1].isEmpty())) {

@@ -57,8 +57,7 @@ public class HiringTable{
 			System.out.println("There are currently no applicants in the system.");
 			return;
 		}
-		System.out.println("Company Name                     Applicant       GPA        College          Skills");
-		System.out.println("--------------------------------------------------------------------------------------------------");
+
 		for (int i = 0; i < table.data.length; i++) {
 
 			boolean comp = false;
@@ -101,8 +100,12 @@ public class HiringTable{
 			}
 
 			if (comp == true && skil == true && coll == true && gpaa == true) {
-				System.out.println(table.data[i].toString());
-			}
+                if (i == 0) {
+                    System.out.println("Company Name                     Applicant       GPA        College          Skills");
+                    System.out.println("--------------------------------------------------------------------------------------------------");
+                }
+                System.out.println(table.data[i].toString());
+            }
 
 			if (table.data[i + 1] == null) {
 				break;
