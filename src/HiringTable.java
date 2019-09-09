@@ -1,14 +1,15 @@
-/*
- * Sai Kalagotla
- * 113033883
- * Professor Esmaili
- * 9/2/2019
- * 
- * Homework #1
- * CSE 214
- * Fall 2019
- * 
- * An abstract data type that stores at maximum 50 applicants.
+/**
+ * @author Sai Kalagotla
+ *  * ID: 113033883
+ *  * Recotation section: R07
+ *  * Professor Esmaili
+ *  * 9/2/2019
+ *  *
+ *  * Homework #1
+ *  * CSE 214
+ *  * Fall 2019
+ *
+ * An abstract data type that stores a maximum of 50 applicants.
  */
 
 public class HiringTable{
@@ -25,36 +26,31 @@ public class HiringTable{
     }
 
 	/**
-	 * A method that returns the max amount of skills an applicant can have
-	 * @return
-	 * 	The max amount of skills an applicant can have.
+	 * A method that returns the max amount of skills an applicant can have.
+	 *
+	 * @return The max amount of skills an applicant can have.
 	 */
 	public int getMaxSkills() {
     	return MAX_SKILLS;
     }
 
 	/**
-	 * A method that returns the max amount of companies an applicant can have
-	 * @return
-	 * 	The max amount of companies an applicant can have.
+	 * A method that returns the max amount of companies an applicant can have.
+	 *
+	 * @return The max amount of companies an applicant can have.
 	 */
     public int getMaxCompanies() {
     	return MAX_COMPANIES;
     }
 
 	/**
-	 * A method that determines if an applicant meets the criteria a user is
-	 * 	looking for and prints the applicants that satisfy the parameters
-	 * @param table
-	 * 	The table the method will be looking through for satisfactory applicants
-	 * @param company
-	 * 	The company the user is filtering for.
-	 * @param skill
-	 * 	The skill the user is filtering for.
-	 * @param college
-	 * 	The college the user is filtering for.
-	 * @param GPA
-	 * 	The GPA the user is filtering for.
+	 * A method that determines if an applicant meets the criteria a user is looking for and prints the applicants that satisfy the parameters
+	 *
+	 * @param table The table the method will be looking through for satisfactory applicants
+	 * @param company The company the user is filtering for.
+	 * @param skill The skill the user is filtering for.
+	 * @param college The college the user is filtering for.
+	 * @param GPA The GPA the user is filtering for.
 	 */
     public static void refineSearch(HiringTable table, String company, String skill, String college, double GPA) {
 		if (table.data[0] == null) {
@@ -116,8 +112,7 @@ public class HiringTable{
 
 	/**
 	 * A method that returns the size of the table
-	 * @return
-	 * 	The size of the table.
+	 * @return The size of the table.
 	 */
     public int size(){
         int counter = 0;
@@ -131,10 +126,9 @@ public class HiringTable{
 
 	/**
 	 * A method that adds an applicant to the table.
-	 * @param newApplicant
-	 * 	The applicant that needs to be added to the table.
-	 * @throws FullTableException
-	 * 	Indicates if the table is full and no new applicants can be added.
+	 *
+	 * @param newApplicant The applicant that needs to be added to the table.
+	 * @throws FullTableException Indicates if the table is full and no new applicants can be added.
 	 */
 	public void addApplicant(Applicant newApplicant) throws FullTableException{
         int i = 0;
@@ -157,10 +151,9 @@ public class HiringTable{
 
 	/**
 	 * A method that removes an applicant from the table.
-	 * @param name
-	 * 	The name of the applicant that needs to be removed from the table.
-	 * @throws ApplicantNotFoundException
-	 * 	Indicates that the applicant the user is looking for does not exist.
+	 *
+	 * @param name The name of the applicant that needs to be removed from the table.
+	 * @throws ApplicantNotFoundException Indicates that the applicant the user is looking for does not exist.
 	 */
 	public void removeApplicant(String name) throws ApplicantNotFoundException{
         int count = 0;
@@ -182,12 +175,9 @@ public class HiringTable{
 
 	/**
 	 * A method that returns the applicant the user is looking for.
-	 * @param name
-	 * 	The name of the applicant the user is looking for.
-	 * @return
-	 * 	The applicant the user is looking for
-	 * @throws ApplicantNotFoundException
-	 * 	Indicates that the applicant the user is looking for could not be found.
+	 * @param name The name of the applicant the user is looking for.
+	 * @return The applicant the user is looking for
+	 * @throws ApplicantNotFoundException Indicates that the applicant the user is looking for could not be found.
 	 */
     public Applicant getApplicant(String name) throws ApplicantNotFoundException{
         
@@ -204,6 +194,9 @@ public class HiringTable{
 
 	/**
 	 * A method that makes a copy of the original hiring table.
+	 *
+	 * This method makes a copy of the original hiring table by first making a new hiring table and then setting
+	 * all the values in the new table equal to the old table.
 	 * @return
 	 * 	A copy of the original hiring table.
 	 */
@@ -247,10 +240,9 @@ public class HiringTable{
 	/**
 	 * A method that checks to see if the copy of the hiring table is the same as the
 	 * original hiring table.
-	 * @param newHT
-	 * 	The back up hiring table that needs to be checked with the original..
-	 * @return
-	 * 	Indicates if the copy is the same or different from the original.
+	 *
+	 * @param newHT The back up hiring table that needs to be checked with the original..
+	 * @return Indicates if the copy is the same or different from the original.
 	 */
 	public boolean checkBackUp(HiringTable newHT) {
     	boolean eq = false;

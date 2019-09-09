@@ -1,12 +1,15 @@
-/*
- * Sai Kalagotla
- * 113033883
+/**
+ * @author Sai Kalagotla
+ * ID: 113033883
+ * Recotation section: R07
  * Professor Esmaili
  * 9/2/2019
- * 
+ *
  * Homework #1
  * CSE 214
  * Fall 2019
+ *
+ * The main class
  */
 
 import java.util.Scanner;
@@ -141,7 +144,7 @@ public class HiringSystem{
 	}
 
 	/**
-	 * A method that prints the heading whenever a user need to be displayed a certain way.
+	 * A method that prints the heading when ever applicants need to be displayed in a list.
 	 */
 	public static void printHeading() {
 		System.out.println("Company Name                     Applicant       GPA        College          Skills");

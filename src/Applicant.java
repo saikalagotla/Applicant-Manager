@@ -1,12 +1,14 @@
-/*
- * Sai Kalagotla
+/**
+ * @author Sai Kalagotla
+ * ID: 113033883
+ * Recotation section: R07
  * Professor Esmaili
  * 9/2/2019
- * 
+ *
  * Homework #1
  * CSE 214
  * Fall 2019
- * 
+ *
  * An abstract data type that represents an applicant and there
  * properties. Contains methods to manipulate the data stored in
  * each member variable.
@@ -28,16 +30,11 @@ public class Applicant{
 
     /**
      * Overloaded constructor that sets the attributes of the applicant
-     * @param companyName
-     *  Applicant's company names.
-     * @param applicantName
-     *  Applicant's name.
-     * @param applicantGPA
-     *  Applicant's GPA.
-     * @param applicantCollege
-     *  Applicant's college.
-     * @param applicantSkills
-     *  Applicant's skills.
+     * @param companyName Applicant's company names.
+     * @param applicantName Applicant's name.
+     * @param applicantGPA Applicant's GPA.
+     * @param applicantCollege Applicant's college.
+     * @param applicantSkills Applicant's skills.
      */
     public Applicant(String[] companyName, String applicantName, double applicantGPA,
     		String applicantCollege, String[] applicantSkills){
@@ -50,10 +47,8 @@ public class Applicant{
 
     /**
      * A method that sets the name of the applicants company.
-     * @param companyName
-     *  The applicants company name that needs to be set.
-     * @throws IllegalArgumentException
-     *  Indicates if the value entered is invalid.
+     * @param companyName The applicants company name that needs to be set.
+     * @throws IllegalArgumentException Indicates if the value entered is invalid.
      */
     public void setCompanyName(String[] companyName){
     	try{
@@ -66,10 +61,8 @@ public class Applicant{
 
     /**
      * A method that sets the name of the applicant.
-     * @param applicantName
-     *  The applicants name that needs to be set.
-     * @throws IllegalArgumentException
-     *  Indicates if the value entered is invalid.
+     * @param applicantName The applicants name that needs to be set.
+     * @throws IllegalArgumentException Indicates if the value entered is invalid.
      */
     public void setApplicantName(String applicantName){
         try{
@@ -82,10 +75,8 @@ public class Applicant{
 
     /**
      * A method that sets the GPA of the applicant.
-     * @param applicantGPA
-     *  The applicants GPA that needs to be set.
-     * @throws IllegalArgumentException
-     *  Indicates if the value entered is invalid.
+     * @param applicantGPA The applicants GPA that needs to be set.
+     * @throws IllegalArgumentException Indicates if the value entered is invalid.
      */
     public void setApplicantGPA(double applicantGPA){
         if(applicantGPA >= 0 && applicantGPA <= 4.0) {
@@ -98,10 +89,8 @@ public class Applicant{
 
     /**
      * A method that sets the college of the applicant.
-     * @param applicantCollege
-     *  The applicants college that needs to be set.
-     * @throws IllegalArgumentException
-     *  Indicates if the value entered is invalid.
+     * @param applicantCollege The applicants college that needs to be set.
+     * @throws IllegalArgumentException Indicates if the value entered is invalid.
      */
     public void setApplicantCollege(String applicantCollege){
         try{
@@ -114,10 +103,8 @@ public class Applicant{
 
     /**
      * A method that sets the skills of the applicant.
-     * @param applicantSkills
-     *  The applicants skills that needs to be set.
-     * @throws IllegalArgumentException
-     *  Indicates if the value entered is invalid.
+     * @param applicantSkills The applicants skills that needs to be set.
+     * @throws IllegalArgumentException Indicates if the value entered is invalid.
      */
     public void setApplicantSkills(String[] applicantSkills){
         try{
@@ -130,8 +117,7 @@ public class Applicant{
 
     /**
      * A method that returns the applicant's company names.
-     * @return
-     *  THe applicant's company names.
+     * @return The applicant's company names.
      */
     public String[] getCompanyName(){
         return companyName;
@@ -139,8 +125,7 @@ public class Applicant{
 
     /**
      * A method that returns the applicant's name.
-     * @return
-     *  THe applicant's name.
+     * @return The applicant's name.
      */
     public String getApplicantName(){
         return applicantName;
@@ -148,8 +133,7 @@ public class Applicant{
 
     /**
      * A method that returns the applicant's GPA.
-     * @return
-     *  THe applicant's GPA.
+     * @return The applicant's GPA.
      */
     public double getApplicantGPA(){
         return applicantGPA;
@@ -157,8 +141,7 @@ public class Applicant{
 
     /**
      * A method that returns the applicant's college.
-     * @return
-     *  THe applicant's college.
+     * @return The applicant's college.
      */
     public String getApplicantCollege(){
         return applicantCollege;
@@ -166,8 +149,7 @@ public class Applicant{
 
     /**
      * A method that returns the applicant's skills.
-     * @return
-     *  THe applicant's skills.
+     * @return The applicant's skills.
      */
     public String[] getApplicantSkills(){
         return applicantSkills;
@@ -175,8 +157,7 @@ public class Applicant{
 
     /**
      * A method that makes a copy of the original applicant.
-     * @return
-     *  The cloned copy of the applicant
+     * @return The cloned copy of the applicant
      */
     public Applicant clone(){
         Applicant newApp = new Applicant(companyName, applicantName, applicantGPA, applicantCollege, applicantSkills);
@@ -187,11 +168,8 @@ public class Applicant{
     /**
      * A method that checks if the original applicant is equal to the applicant
      * the user provides.
-     * @param app
-     *  The applicant that the user provides to check if the original is the same
-     *  as the given applicant
-     * @return
-     *  If the applicant is the same or not
+     * @param app The applicant that the user provides to check if the original is the same as the given applicant
+     * @return If the applicant is the same or not
      */
     public boolean equals(Applicant app){
         if(companyName == app.getCompanyName() && applicantGPA == app.getApplicantGPA() && 
@@ -205,8 +183,7 @@ public class Applicant{
 
     /**
      * A method that returns a formatted string of the summary of the applicant
-     * @return
-     *  The formatted string of the summary of the applicant
+     * @return The formatted string of the summary of the applicant
      */
     public String toString(){
     	String compNames = "";
