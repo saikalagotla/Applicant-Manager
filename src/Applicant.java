@@ -1,5 +1,4 @@
 import java.util.InputMismatchException;
-import java.util.Scanner;
 
 /**
  * @author Sai Kalagotla
@@ -54,12 +53,7 @@ public class Applicant{
      * @throws IllegalArgumentException Indicates if the value entered is invalid.
      */
     public void setCompanyName(String[] companyName){
-    	try{
-    		this.companyName = companyName;
-    	}
-    	catch(IllegalArgumentException e) {
-            System.out.println("The input is not valid");
-        }
+        this.companyName = companyName;
     }
 
     /**
@@ -68,12 +62,7 @@ public class Applicant{
      * @throws IllegalArgumentException Indicates if the value entered is invalid.
      */
     public void setApplicantName(String applicantName){
-        try{
-        	this.applicantName = applicantName;
-        }
-        catch(IllegalArgumentException e) {
-        	System.out.println(e.getMessage());
-        }
+        this.applicantName = applicantName;
     }
 
     /**

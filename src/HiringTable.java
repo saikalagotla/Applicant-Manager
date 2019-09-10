@@ -100,10 +100,6 @@ public class HiringTable{
 			}
 
 			if (comp == true && skil == true && coll == true && gpaa == true) {
-                if (i == 0) {
-                    System.out.println("Company Name                     Applicant       GPA        College          Skills");
-                    System.out.println("--------------------------------------------------------------------------------------------------");
-                }
                 System.out.println(table.data[i].toString());
             }
 
@@ -200,8 +196,8 @@ public class HiringTable{
 	 *
 	 * This method makes a copy of the original hiring table by first making a new hiring table and then setting
 	 * all the values in the new table equal to the old table.
-	 * @return
-	 * 	A copy of the original hiring table.
+	 *
+	 * @return A copy of the original hiring table.
 	 */
 	public HiringTable clone(){
         HiringTable ht = new HiringTable();

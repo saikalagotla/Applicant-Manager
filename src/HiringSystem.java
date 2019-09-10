@@ -23,8 +23,7 @@ public class HiringSystem{
 
 	/**
 	 * A method that asks the user for the name of the applicant.
-	 * @return
-	 * 	The name that the user enters.
+	 * @return The name that the user enters.
 	 */
 	public static String askName() {
 		System.out.print("Enter Applicant Name: ");
@@ -34,8 +33,7 @@ public class HiringSystem{
 
 	/**
 	 * A method that asks the user for the college of the applicant.
-	 * @return
-	 * 	The college name that the user enters.
+	 * @return The college name that the user enters.
 	 */
 	public static String askCollege() {
 		System.out.print("Enter Applicant College: ");
@@ -45,8 +43,7 @@ public class HiringSystem{
 
 	/**
 	 * A method that asks the user for the companies(max of 3) that the applicant has worked at.
-	 * @return
-	 * 	The company name that the user enters.
+	 * @return The company name that the user enters.
 	 */
 	public static String[] askCompanies() {
 		HiringTable HT = new HiringTable();
@@ -63,8 +60,7 @@ public class HiringSystem{
 
 	/**
 	 * A method that asks the user for the skills(max of 3) that the applicant has.
-	 * @return
-	 * 	The skills that the user enters.
+	 * @return The skills that the user enters.
 	 */
 	public static String[] askSkills() {
 		HiringTable HT = new HiringTable();
@@ -81,8 +77,7 @@ public class HiringSystem{
 
 	/**
 	 * A method that creates a new applicant by asking the user to enter all the attributes of the applicant.
-	 * @return
-	 * 	An applicant with the attributes the user specifies.
+	 * @return An applicant with the attributes the user specifies.
 	 */
 	public static Applicant addApp(){
 		Applicant newApp = new Applicant();
@@ -116,8 +111,7 @@ public class HiringSystem{
 
 	/**
 	 * A method that takes in an applicant and displays that applicant.
-	 * @param app
-	 * 	The applicant that needs to be displayed
+	 * @param app The applicant that needs to be displayed
 	 */
 	public static void displayApp(Applicant app) {
         
@@ -166,10 +160,8 @@ public class HiringSystem{
 	/**
 	 * The main method of the program.
 	 * @param args
-	 * @throws FullTableException
-	 * 	Indicates that no more applicants can be added to the table when it is full.
-	 * @throws ApplicantNotFoundException
-	 * 	Indicates that the applicant the user is looking for can not be found.
+	 * @throws FullTableException Indicates that no more applicants can be added to the table when it is full.
+	 * @throws ApplicantNotFoundException Indicates that the applicant the user is looking for can not be found.
 	 */
     public static void main(String[] args) throws FullTableException, ApplicantNotFoundException{
 		HiringTable HTab = new HiringTable();
@@ -231,6 +223,7 @@ public class HiringSystem{
 	            	HTab.printApplicantTable();
 	            break;
 	            case "rs":
+	                printHeading();
 	            	System.out.print("Enter a company to filter for: ");
 	            	String comp = keyboard.nextLine();
 	            	System.out.print("Enter a skill to filter for: ");
@@ -245,7 +238,6 @@ public class HiringSystem{
 					}
 					double GPA = Double.parseDouble(gpa);
 	            	HTab.refineSearch(HTab, comp, skil, col, GPA);
-
 
 	            break;
 	            case "s":
