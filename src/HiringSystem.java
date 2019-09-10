@@ -12,6 +12,7 @@
  * The main class
  */
 
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class HiringSystem{
@@ -85,13 +86,24 @@ public class HiringSystem{
 	 */
 	public static Applicant addApp(){
 		Applicant newApp = new Applicant();
-    	
+
+		double GPA = 0;
+
         String appName = askName();
         newApp.setApplicantName(appName);
         System.out.print("Enter Applicant GPA: ");
-        double GPA = keyboard.nextDouble();
+		GPA = keyboard.nextDouble();
         keyboard.nextLine();
-        newApp.setApplicantGPA(GPA);
+        do {
+			try {
+				newApp.setApplicantGPA(GPA);
+			} catch (InputMismatchException e) {
+				System.out.println("Input has to be an integer that is greater than or equal to 0 and less than or equal to 4");
+				System.out.print("Please try again: ");
+				GPA = keyboard.nextDouble();
+				keyboard.nextLine();
+			}
+		}while(GPA < 0 || GPA > 4);
         String college = askCollege();
         newApp.setApplicantCollege(college);
         String[] companies = askCompanies();
@@ -162,16 +174,17 @@ public class HiringSystem{
     public static void main(String[] args) throws FullTableException, ApplicantNotFoundException{
 		HiringTable HTab = new HiringTable();
 
-    	System.out.print("(A)   Add Applicant\n" +
-    			"(R)   Remove Applicant\n" +
-    			"(G)   Get Applicant\n" +
-    			"(P)   Print List\n" +
-    			"(RS)  Refine Search\n" +
-    			"(S)   Size\n" +
-    			"(B)   Backup\n" +
-    			"(CB)  Compare Backup\n" +
-    			"(RB)  Revert Backup\n" +
-    			"(Q)   Quit");
+		System.out.print("(A)   Add Applicant\n" +
+				"(R)   Remove Applicant\n" +
+				"(G)   Get Applicant\n" +
+				"(P)   Print List\n" +
+				"(RS)  Refine Search\n" +
+				"(S)   Size\n" +
+				"(B)   Backup\n" +
+				"(CB)  Compare Backup\n" +
+				"(RB)  Revert Backup\n" +
+				"(Q)   Quit");
+
         System.out.print("\n\nPlease enter a command: ");
         String option = keyboard.nextLine();
         
@@ -189,15 +202,30 @@ public class HiringSystem{
 	            		System.out.println("You can not apply without entering a name.");
 	            		break;
 					}
-					HTab.addApplicant(app);
+					try{
+						HTab.addApplicant(app);
+					}
+					catch(FullTableException e){
+						System.out.println(e.getMessage());
+					}
 	            break;  
 	            case "r":
 	                String name = askName();
-	                HTab.removeApplicant(name);
+	                try{
+	                	HTab.removeApplicant(name);
+					}
+	                catch(ApplicantNotFoundException e){
+	                	System.out.println(e.getMessage());
+					}
 	            break;
 	            case "g":
 	                String name1 = askName();
-	                displayApp(HTab.getApplicant(name1));
+	                try{
+	                	displayApp(HTab.getApplicant(name1));
+					}
+					catch(ApplicantNotFoundException e){
+						System.out.println(e.getMessage());
+					}
 	            break;
 	            case "p":
 	            	HTab.printApplicantTable();
@@ -244,8 +272,19 @@ public class HiringSystem{
 	            	System.out.println("Invalid command!");
 	            break; 
 	        }
-        	
-        	System.out.print("Please enter a command: ");
+
+			System.out.print("\n(A)   Add Applicant\n" +
+					"(R)   Remove Applicant\n" +
+					"(G)   Get Applicant\n" +
+					"(P)   Print List\n" +
+					"(RS)  Refine Search\n" +
+					"(S)   Size\n" +
+					"(B)   Backup\n" +
+					"(CB)  Compare Backup\n" +
+					"(RB)  Revert Backup\n" +
+					"(Q)   Quit");
+
+        	System.out.print("\n\nPlease enter a command: ");
             option = keyboard.nextLine();
             
         }

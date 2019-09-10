@@ -1,3 +1,6 @@
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 /**
  * @author Sai Kalagotla
  * ID: 113033883
@@ -76,43 +79,34 @@ public class Applicant{
     /**
      * A method that sets the GPA of the applicant.
      * @param applicantGPA The applicants GPA that needs to be set.
+     * @throws InputMismatchException Indicates that the GPA given is a negative number.
      * @throws IllegalArgumentException Indicates if the value entered is invalid.
      */
-    public void setApplicantGPA(double applicantGPA){
-        if(applicantGPA >= 0 && applicantGPA <= 4.0) {
-        	this.applicantGPA = applicantGPA;
+    public void setApplicantGPA(double applicantGPA) {
+        if(applicantGPA < 0){
+            throw new InputMismatchException();
         }
-        else {
-        	throw new IllegalArgumentException("Value is invalid");
+        try {
+            this.applicantGPA = applicantGPA;
+        } catch (InputMismatchException e) {
+            System.out.println("Please only enter positive numbers: ");
         }
     }
 
     /**
      * A method that sets the college of the applicant.
      * @param applicantCollege The applicants college that needs to be set.
-     * @throws IllegalArgumentException Indicates if the value entered is invalid.
      */
     public void setApplicantCollege(String applicantCollege){
-        try{
-        	this.applicantCollege = applicantCollege;
-        }
-        catch(IllegalArgumentException e) {
-        	System.out.println("The input is not valid");
-        }
+        this.applicantCollege = applicantCollege;
     }
 
     /**
      * A method that sets the skills of the applicant.
      * @param applicantSkills The applicants skills that needs to be set.
-     * @throws IllegalArgumentException Indicates if the value entered is invalid.
      */
     public void setApplicantSkills(String[] applicantSkills){
-        try{
-        	this.applicantSkills = applicantSkills;
-        }
-        catch(IllegalArgumentException e) {
-        	System.out.println("The input is not valid");
-        }
+        this.applicantSkills = applicantSkills;
     }
 
     /**

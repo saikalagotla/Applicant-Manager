@@ -134,7 +134,7 @@ public class HiringTable{
 	 * @throws FullTableException Indicates if the table is full and no new applicants can be added.
 	 */
 	public void addApplicant(Applicant newApplicant) throws FullTableException{
-        int i = 0;
+	    int i = 0;
         if(data[data.length-1] != null) {
         	throw new FullTableException();
         }
@@ -248,24 +248,21 @@ public class HiringTable{
 	 * @return Indicates if the copy is the same or different from the original.
 	 */
 	public boolean checkBackUp(HiringTable newHT) {
-    	boolean eq = false;
-    	if(this.size() == newHT.size()) {
-    		for(int x = 0; x < this.size(); x++) {
-        		if(data[x].equals(newHT.data[x]) == true) {
-        			eq = true;
-        		}
-        		else {
-        			return false;
-        		}
-        	}
-    		if(eq = true) {
-    			return eq;
-    		}
-    		else {
-    			return false;
-    		}
-		}
-    	return eq;
+        boolean eq = false;
+        if (this.size() == newHT.size()) {
+            for (int x = 0; x < this.size(); x++) {
+                if (data[x].equals(newHT.data[x]) == true) {
+                    eq = true;
+                } else {
+                    return false;
+                }
+            }
+            if (eq = true) {
+                return eq;
+            } else {
+                return false;
+            }
+        }
+        return eq;
     }
-
 }
